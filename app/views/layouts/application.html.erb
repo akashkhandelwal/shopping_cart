@@ -14,6 +14,7 @@
   </div>
   <div id="columns">
     <div id="side">
+      <div style="color: #fff;"><%= Time.now %></div>
       <div id="cart">
         <% if @cart  %>
         <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
@@ -26,7 +27,19 @@
         <li><a href="http://www..../faq">Questions</a></li>
         <li><a href="http://www..../news">News</a></li>
         <li><a href="http://www..../contact">Contact</a></li>
+        <% if !session[:user_id] %>
+          <li><%= link_to 'Log in', login_url %></li>
+        <% end %>
       </ul>
+
+      <% if session[:user_id] %>
+        <ul>
+          <li><%= link_to 'Orders',   orders_path   %></li>
+          <li><%= link_to 'Products', products_path %></li>
+          <li><%= link_to 'Users',    users_path    %></li>
+        </ul>
+        <%= button_to 'Logout', logout_path, method: :delete   %>
+      <% end %>
     </div>
     <div id="main">
       <%= yield %>
