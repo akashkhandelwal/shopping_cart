@@ -3,6 +3,11 @@
   This is just to let you know that we've shipped your recent order:
 </p>
 <table>
-  <tr><th colspan="2">Qty</th><th>Description</th></tr>
-<%= render @order.line_items %>
+	<% @order.line_items.all.each do |item| %>
+	<tr>
+		<td><%= item.quantity %>&times;</td>
+	  <td><%= item.product.title %></td>
+ 	  <td class="item_price"><%= number_to_currency(item.total_price) %>
+	</tr>
+	<% end %>
 </table>

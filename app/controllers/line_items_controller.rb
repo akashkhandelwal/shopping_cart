@@ -1,5 +1,5 @@
 class LineItemsController < ApplicationController
-  skip_before_filter :authorize, only: :create
+  skip_before_filter :authorize, only: [:create, :destroy]
   # GET /line_items
   # GET /line_items.json
   def index
@@ -85,6 +85,17 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to line_items_url }
+      format.json { head :no_content }
+    end
+  end
+
+  def decrement
+    @line_item = LineItem.find(params[:id])
+    @line_item.delete_product
+
+    respond_to do |format|
+      format.html { redirect_to store_url, notice: 'Product successfully removed' }
+      format.js { @current_item = @line_item }
       format.json { head :no_content }
     end
   end

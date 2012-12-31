@@ -51,6 +51,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
+        @hide_checkout_button = true
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         OrderNotifier.received(@order).deliver  
@@ -81,6 +82,12 @@ class OrdersController < ApplicationController
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def ship_product
+    @order = Order.find(params[:id])
+    @order.update_ship_date
+    redirect_to orders_url  
   end
 
   # DELETE /orders/1

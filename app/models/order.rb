@@ -14,4 +14,10 @@ class Order < ActiveRecord::Base
       line_items << item
     end
   end
+
+  def update_ship_date
+    self.ship_date = Time.now
+    self.save
+    OrderNotifier.shipped(self).deliver
+  end
 end

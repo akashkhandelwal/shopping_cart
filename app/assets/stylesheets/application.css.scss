@@ -29,7 +29,7 @@
 
 #notice {
   color: #000 !important;
-  border: 2px solid red;
+  border: 2px solid green;
   padding: 1em;
   margin-bottom: 2em;
   background-color: #f0f0f0;
@@ -40,7 +40,7 @@
   background: #141;
 
   #main {
-    margin-left: 17em;
+    margin-left: 20em;
     padding: 1em;
     background: white;
   }
@@ -70,6 +70,7 @@
         border-bottom: 1px dotted #595;
         margin-bottom: 10px;
       }
+
     }
 
 /* END_HIGHLIGHT */
@@ -102,7 +103,7 @@
   }
   form {
     label {
-      width: 5em;
+      width: 10em;
       float: left;
       text-align: right;
       padding-top: 0.2em;

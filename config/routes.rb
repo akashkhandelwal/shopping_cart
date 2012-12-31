@@ -17,9 +17,13 @@ Demo::Application.routes.draw do
 
   resources :users
 
-  resources :orders
+  resources :orders do
+    put 'ship_product', on: :member
+  end
 
-  resources :line_items
+  resources :line_items do
+    delete 'decrement', on: :member
+  end
 
   resources :carts
 
